@@ -63,7 +63,7 @@ const addBackground = (root) => {
   whiteBox.style.width = `${GAME_WIDTH}px`;
   whiteBox.style.background = "#fff";
   whiteBox.innerText =
-    "Use the ⬅️ arrow keys ➡️ ";
+    " ⬅️ arrow keys ➡️ ";
   whiteBox.style.textAlign = "center";
   whiteBox.style.fontSize = "30px";
   root.append(whiteBox);

@@ -31,3 +31,8 @@ document.addEventListener("keydown", keydownHandler);
 
 // We call the gameLoop method to start the game
 gameEngine.gameLoop();
+
+window.addEventListener("load", () => {
+  alert("Use the ⬅️ arrow keys ➡️ to move and hear a groovy song 🎶");
+});
+

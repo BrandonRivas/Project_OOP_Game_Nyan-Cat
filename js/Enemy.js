@@ -44,7 +44,6 @@ class Enemy {
     this.domElement.style.zIndex = 5;
     this.domElement.style.width = "75px";
     this.domElement.style.height = "156px";
-    this.domElement.style.animation = "infiniteMove 5s linear 0s infinite"
 
     // Show that the user can actually see the img DOM node, we append it to the root DOM node.
     theRoot.appendChild(this.domElement);
