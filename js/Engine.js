@@ -72,16 +72,17 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
-    // 0. get player's x1, x2, y1, y2
     let playerX1 = this.player.x;
     let playerX2 = this.player.x + PLAYER_WIDTH;
     let playerY1 = GAME_HEIGHT - PLAYER_HEIGHT;
     let playerY2 = playerY1 + PLAYER_HEIGHT;
 
     let didOverlap = false;
-    // 1. create for loop that loops through all enemies
+
+    /* Here, we are going to rewrite the code of this function to actually check if the player should be dead. 
+    We will do this by looping over all the enemies, and checking if their box overlaps the player box.
+    If at least one enemy overlaps the player, then your function should return true. Otherwise it should return `false.*/
     for (let i = 0; i < this.enemies.length; i++) {
-      // 1a. get enemy's x1, x2, y1, y2
       let enemiesX1 = this.enemies[i].x;
       let enemiesX2 = enemiesX1 + ENEMY_WIDTH;
       let enemiesY1 = this.enemies[i].y;
@@ -96,16 +97,15 @@ class Engine {
         enemiesY1,
         enemiesY2
       );
-      // 1b. call isOverlapping(x1,x2,y1,y2,x3,x4,y3,y4)
       if (overlap) {
-        didOverlap = true;
-        this.enemies[i].destroyed = true;
+        didOverlap = true; // this will set the value of didOverlap to true to run the next if statement
+        this.enemies[i].destroyed = true; // this will get the dogs from inflicting more than 1 damage
         break;
       }
     }
 
     if (didOverlap) {
-      this.player.loseLives();
+      this.player.loseLives(); // this function will subtract -1 from total lives
       if (this.player.lives < 0) {
         this.livesText.update("DEAD");
       } else {
@@ -117,16 +117,7 @@ class Engine {
   };
 
   isOverlapping = (x1, x2, y1, y2, x3, x4, y3, y4) => {
+    // this is comparing the x and y axis of the hamburger and the dogs to see if they are overlapping
     return x1 < x4 && x2 > x3 && y1 < y4 && y2 > y3;
   };
 }
-
-/* Here, we are going to rewrite the code of this function to actually check if the player should be dead. 
-
-We will do this by looping over all the enemies, and checking if their box overlaps the player box.
-
-If at least one enemy overlaps the player, then your function should return true. Otherwise it should return `false.
-
-A good strategy would be to console.log both this.player and this.enemies. 
-When you look in the console, you will see that those two objects contain the information necessary to detect a collision.
-*/

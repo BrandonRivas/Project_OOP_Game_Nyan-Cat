@@ -68,6 +68,7 @@ class Enemy {
       this.destroyed = true;
     }
     if (this.destroyed) {
+      // this was moved so that the destroyed can be applied to dogs that have attacked
       this.root.removeChild(this.domElement);
     }
   }

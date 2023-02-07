@@ -68,13 +68,6 @@ const addBackground = (root) => {
   whiteBox.style.fontSize = "30px";
   root.append(whiteBox);
 
-  // const score = document.getElementById("score");
-  // score.style.zIndex = 100;
-  // score.style.position = "absolute";
-  // score.style.top = "10px";
-  // score.style.left = "20px";
-  // score.style.color = "white";
-  // score.style.fontSize = "30px";
 };
 
-//
+
