@@ -14,6 +14,8 @@ class Engine {
     // Initially, we have no enemies in the game. The enemies property refers to an array
     // that contains instances of the Enemy class
     this.enemies = [];
+
+    this.livesText = new Text(this.root, 20, 20, this.player.lives);
     // We add the background image to the game
     addBackground(this.root);
   }
@@ -57,7 +59,9 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      const audio = document.querySelector("audio");
+      audio.pause();
+      window.alert("Game over");
       return;
     }
 
@@ -68,6 +72,61 @@ class Engine {
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
   isPlayerDead = () => {
-    return false;
+    // 0. get player's x1, x2, y1, y2
+    let playerX1 = this.player.x;
+    let playerX2 = this.player.x + PLAYER_WIDTH;
+    let playerY1 = GAME_HEIGHT - PLAYER_HEIGHT;
+    let playerY2 = playerY1 + PLAYER_HEIGHT;
+
+    let didOverlap = false;
+    // 1. create for loop that loops through all enemies
+    for (let i = 0; i < this.enemies.length; i++) {
+      // 1a. get enemy's x1, x2, y1, y2
+      let enemiesX1 = this.enemies[i].x;
+      let enemiesX2 = enemiesX1 + ENEMY_WIDTH;
+      let enemiesY1 = this.enemies[i].y;
+      let enemiesY2 = enemiesY1 + ENEMY_HEIGHT;
+      let overlap = this.isOverlapping(
+        playerX1,
+        playerX2,
+        playerY1,
+        playerY2,
+        enemiesX1,
+        enemiesX2,
+        enemiesY1,
+        enemiesY2
+      );
+      // 1b. call isOverlapping(x1,x2,y1,y2,x3,x4,y3,y4)
+      if (overlap) {
+        didOverlap = true;
+        this.enemies[i].destroyed = true;
+        break;
+      }
+    }
+
+    if (didOverlap) {
+      this.player.loseLives();
+      if (this.player.lives < 0) {
+        this.livesText.update("DEAD");
+      } else {
+        this.livesText.update(this.player.lives);
+      }
+    }
+
+    return this.player.lives < 0;
+  };
+
+  isOverlapping = (x1, x2, y1, y2, x3, x4, y3, y4) => {
+    return x1 < x4 && x2 > x3 && y1 < y4 && y2 > y3;
   };
 }
+
+/* Here, we are going to rewrite the code of this function to actually check if the player should be dead. 
+
+We will do this by looping over all the enemies, and checking if their box overlaps the player box.
+
+If at least one enemy overlaps the player, then your function should return true. Otherwise it should return `false.
+
+A good strategy would be to console.log both this.player and this.enemies. 
+When you look in the console, you will see that those two objects contain the information necessary to detect a collision.
+*/
