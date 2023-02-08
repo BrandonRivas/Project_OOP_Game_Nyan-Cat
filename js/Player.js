@@ -27,7 +27,7 @@ class Player {
     this.lives = 3;
   
   }
-
+//method so that the player can lose lives
   loseLives() {
     this.lives = this.lives - 1;
   }
