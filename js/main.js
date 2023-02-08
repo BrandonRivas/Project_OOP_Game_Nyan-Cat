@@ -33,6 +33,7 @@ document.addEventListener("keydown", keydownHandler);
 gameEngine.gameLoop();
 
 window.addEventListener("load", () => {
-  alert("Use the ⬅️ arrow keys ➡️ to move and hear a groovy song 🎶");
+  alert(
+    "Use the ⬅️ arrow keys ➡️ to move. ‼️ Avoid the dogs ‼️ and listen a groovy tune 🎶"
+  );
 });
-

@@ -13,7 +13,7 @@ class Text {
     div.style.color = "white";
     div.style.font = "bold 30px Impact";
     div.style.zIndex = 2000;
-    div.innerText = txt;
+    div.innerText = "Lives: 3";
 
     root.appendChild(div);
 

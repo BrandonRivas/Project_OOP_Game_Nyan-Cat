@@ -107,9 +107,9 @@ class Engine {
     if (didOverlap) {
       this.player.loseLives(); // this function will subtract -1 from total lives
       if (this.player.lives < 0) {
-        this.livesText.update("DEAD");
+        this.livesText.update("DEAD ☠️");
       } else {
-        this.livesText.update(this.player.lives);
+        this.livesText.update(`Lives: ${this.player.lives}`);
       }
     }
 

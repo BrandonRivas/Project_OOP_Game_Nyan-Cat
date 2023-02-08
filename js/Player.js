@@ -23,7 +23,9 @@ class Player {
     this.domElement.style.zIndex = "10";
     root.appendChild(this.domElement);
     //this is the base live value for the player
+
     this.lives = 3;
+  
   }
 
   loseLives() {
